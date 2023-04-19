@@ -1,19 +1,18 @@
 %{
-    #include<stdio.h>
-    int nc=0;
-%}  
+#include<stdio.h>
+int ans=0,curr=0;
+%}
 %%
-"/*"[a-zA-Z0-9\n\t ]*"*/"  {nc++;}
-"//"[a-zA-Z0-9\t ]*"\n"   {nc++;}
-. {;}
+"//" {ans++; }
+"/*" {curr = 1; }
+"*/" {if(curr==1) {ans++, curr=0;} }
+. ;
 %%
-
-void main()
-{
-    yylex();
-    printf("No. of comments = %d",nc);
+int yywrap() {
+ return 1;
 }
-int yywrap()
-{
-    return 1;
+int main() {
+ yylex();
+ printf("No of comments are : %d\n", ans);
+ return 0;
 }
