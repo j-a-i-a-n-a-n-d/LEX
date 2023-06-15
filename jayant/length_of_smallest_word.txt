@@ -1,0 +1,22 @@
+%{
+	#include<stdio.h>
+	#include<string.h>
+	int shortest = 100;
+%}
+%%
+[a-zA-Z]+ {	if(yyleng< shortest){
+			shortest = yyleng;
+		}}
+%%
+
+int yywrap()
+{
+return 1;
+}
+
+int main(void)
+{
+	yylex();
+	printf("Length of a shortest string is %d \n", shortest);
+	return 0;
+}

@@ -1,0 +1,22 @@
+%{
+	#include<stdio.h>
+	#include<string.h>
+	int longest = 0;
+%}
+%%
+[a-zA-Z]+ {	if(yyleng>longest){
+			longest = yyleng;
+		}}
+%%
+
+int yywrap()
+{
+return 1;
+}
+
+int main(void)
+{
+	yylex();
+	printf("Length of a longest string is %d \n",longest);
+	return 0;
+}

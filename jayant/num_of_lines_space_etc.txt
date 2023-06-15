@@ -1,0 +1,28 @@
+%{
+#include<stdio.h>
+int lc=0, sc=0, tc=0, wc=0;
+%}
+
+%%
+[\n] {lc++;}
+[" "] {sc++;}
+[\t] {tc++;}
+[a-zA-Z0-9]+ {wc++;}
+%%
+
+int yywrap()
+{
+return 1;
+}
+
+int main()
+{
+printf("Enter the sentence : ");
+yylex();
+printf("Number of lines : %d\n",lc);
+printf("Number of spaces : %d\n",sc);
+printf("Number of tabs : %d\n",tc);
+printf("Number of words : %d\n",wc);
+
+return 0;
+}

@@ -1,0 +1,31 @@
+%{
+#include<stdio.h>
+int i=0,flag,c;
+%}
+%%
+[0-9]* {c=atoi(yytext);
+	if(c== 1 || c == 0){
+        printf("Perfect Square\n");
+        flag=1;
+    }
+
+    for(i = 2; i <= c/2; i++)
+    {
+        if(c == i*i){
+            flag=1;
+            break;
+        }}
+    if(flag == 1){
+    	printf("Perfect Square\n");
+    	flag=0;
+        }
+       else
+       	printf("NOT a Perfect Square\n");
+ }
+%%
+int yywrap(void){}
+
+int main(){
+yylex();
+return 0;
+}
